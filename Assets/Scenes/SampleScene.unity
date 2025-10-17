@@ -2035,7 +2035,7 @@ MonoBehaviour:
   model: gemma3:4b
   useChatEndpoint: 1
   googleHost: https://generativelanguage.googleapis.com
-  googleApiVersion: v1
+  googleApiVersion: v1beta
   googleModel: gemini-flash-lite-latest
   googleApiKey: AIzaSyCg3P8vwIshmR_3A68oXm8aTKWIbT9ShEM
   googleListModelsAtStart: 0
