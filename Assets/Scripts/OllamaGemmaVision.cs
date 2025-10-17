@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 // Drop this on any GameObject and call the example in Start(), or from your own code.
 public class OllamaGemmaVision : MonoBehaviour
 {
@@ -49,9 +49,13 @@ public class OllamaGemmaVision : MonoBehaviour
     private Action<string> _lastOnSuccess;
     private Action<string> _lastOnError;
     public Button toggleCameraButton;
+    public Button backButton;
     void Start()
     {
+        backButton.onClick.AddListener(BackButtonClicked);
+        question = AppConstant.PROMPT;
         questionText.text = question;
+        googleModel = AppConstant.GOOGLE_MODEL;
         if (provider == Provider.Google)
         {
             modelText.text = "Provider: Google | Model: " + googleModel;
@@ -82,6 +86,12 @@ public class OllamaGemmaVision : MonoBehaviour
     {
 		StopWebcamContinuous();
         toggleCameraButton.onClick.RemoveListener(ToggleCamera);
+    }
+
+    void BackButtonClicked()
+    {
+        StopWebcamContinuous();
+        SceneManager.LoadScene(0);
     }
 
     public IEnumerator AskImageQuestion(string questionText, string localImagePath, Action<string> onSuccess, Action<string> onError = null, bool nonBlocking = false)
